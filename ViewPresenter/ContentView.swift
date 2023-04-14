@@ -41,3 +41,10 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
+
+// Sheet
+// sheet is for showing unrelated content modally
+//
+// settings
+// compose window
+// trophy list
