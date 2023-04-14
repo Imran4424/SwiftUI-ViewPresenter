@@ -7,31 +7,18 @@
 
 import SwiftUI
 
-// sheet is alernative to showing views modally in UIKit
-struct SecondView: View {
-    @Environment(\.dismiss) var dismiss
-    
-    let name: String
-    
-    var body: some View {
-        VStack {
-            Text("Hello, \(name)!")
-            Button("Dismiss") {
-                dismiss()
-            }
-        }
-    }
-}
-
 struct ContentView: View {
-    @State private var showingSheet = false
-    
     var body: some View {
-        Button("Show Sheet") {
-            showingSheet.toggle()
-        }
-        .sheet(isPresented: $showingSheet) {
-            SecondView(name: "Imran")
+        NavigationView {
+            List(0..<100) { row in
+                NavigationLink {
+                    Text("Detail \(row)")
+                } label: {
+                    Text("Row \(row)")
+                        .padding()
+                }
+            }
+            .navigationTitle("SwiftUI")
         }
     }
 }
@@ -42,9 +29,9 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 
-// Sheet
-// sheet is for showing unrelated content modally
+// when to use what
+// Navigation link
 //
-// settings
-// compose window
-// trophy list
+// Showing details about something
+// List view element details
+//
