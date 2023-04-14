@@ -7,15 +7,32 @@
 
 import SwiftUI
 
-struct ContentView: View {
+// sheet is alernative to showing views modally in UIKit
+struct SecondView: View {
+    @Environment(\.dismiss) var dismiss
+    
+    let name: String
+    
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+            Text("Hello, \(name)!")
+            Button("Dismiss") {
+                dismiss()
+            }
         }
-        .padding()
+    }
+}
+
+struct ContentView: View {
+    @State private var showingSheet = false
+    
+    var body: some View {
+        Button("Show Sheet") {
+            showingSheet.toggle()
+        }
+        .sheet(isPresented: $showingSheet) {
+            SecondView(name: "Imran")
+        }
     }
 }
 
